@@ -1,0 +1,56 @@
+os: linux 
+arch: arm64-graviton2
+language: python
+virt: vm
+group: edge
+
+jobs:
+  include:
+     - dist: focal
+       script: 
+        - echo "Threads/core $(nproc --all)"
+        - free -g
+     - dist: focal
+       vm:
+         size: medium
+       script: 
+        - echo "Threads/core $(nproc --all)"
+        - free -g
+     - dist: focal
+       vm:
+         size: large
+       script: 
+        - echo "Threads/core $(nproc --all)"
+        - free -g
+     - dist: focal
+       vm:
+         size: x-large
+       script: 
+        - echo "Threads/core $(nproc --all)"
+        - free -g
+     - os: osx # sizing not available for osx
+       language: generic
+       script: echo "size test"
+       vm:
+         size: large
+     - os: osx # sizing not available for osx
+       language: generic
+       script: echo "Hello"
+       vm:
+         size: x-large 
+     - os: freebsd
+       script: python ./hello.py
+     - os: freebsd
+       script: python ./hello.py
+       vm:
+         size: medium
+     - os: freebsd
+       script: python ./hello.py
+       vm:
+         size: large
+     - os: freebsd
+       script: python ./hello.py
+       vm:
+         size: x-large
+     - os: freebsd
+       script: python ./hello.py
